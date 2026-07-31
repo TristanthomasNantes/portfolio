@@ -1,38 +1,43 @@
-# Portfolio PHP — articulation technique
+# Portfolio Next.js — articulation technique
 
-Site de test mono-page en PHP sans framework.
+Site portfolio mono-page en Next.js (App Router), prêt pour Vercel.
 
 ## Fichiers
 
 | Fichier | Rôle |
 |---------|------|
-| `index.php` | Page unique (hero, à propos, projets, contact) |
-| `contact.php` | Traitement POST du formulaire |
-| `style.css` | Styles mutualisés |
-| `includes/bootstrap.php` | Session, CSRF, échappement HTML, flash |
-| `includes/projects.php` | Données projets (tableau PHP) |
-| `storage/` | Logs contact (accès web bloqué via `.htaccess`) |
+| `src/app/page.tsx` | Page unique (hero, à propos, projets, contact) |
+| `src/app/layout.tsx` | Layout, fonts, metadata |
+| `src/app/style.css` | Styles mutualisés |
+| `src/app/api/contact/route.ts` | Route Handler POST du formulaire |
+| `src/components/ContactForm.tsx` | Formulaire client (fetch + états) |
+| `src/data/projects.ts` | Données projets |
 
 ## Flux contact
 
-1. `index.php` génère un token CSRF en session.
-2. `contact.php` n’accepte que `POST`, vérifie CSRF (`hash_equals`), valide nom / email / message.
-3. En mode test, le message est append dans `storage/contact.log` (pas d’envoi mail).
-4. Redirection vers `index.php#contact` avec message flash.
+1. `ContactForm` envoie un JSON vers `POST /api/contact`.
+2. L’API refuse les corps invalides, valide nom / email / message.
+3. Champ honeypot `company` : si rempli → succès feint (anti-bot).
+4. Mode test : log serveur, pas d’envoi mail.
 
 ## Sécurité (basique)
 
-- `declare(strict_types=1)`
-- Échappement XSS via `e()` (`htmlspecialchars`)
-- CSRF sur le formulaire
-- Cookies session `httponly` + `SameSite=Lax`
-- Validation longueur + `filter_var` email
-- Logs hors lecture web (`storage/.htaccess`)
+- Validation longueur + format email côté serveur
+- Honeypot anti-spam
+- Pas d’exécution de HTML utilisateur (React échappe par défaut)
+- Pas de secrets dans le code
 
-## Lancer en local
+## Scripts
 
 ```bash
-php -S localhost:8080 -t .
+npm run dev    # http://localhost:3000
+npm run build
+npm start
 ```
 
-Ouvrir http://localhost:8080
+## Vercel
+
+- **Framework Preset** : Next.js
+- **Build Command** : `next build` (défaut)
+- **Output Directory** : laisser vide (géré par Next.js)
+- **Install Command** : `npm install` (défaut)
