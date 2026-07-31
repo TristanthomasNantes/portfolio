@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import { Manrope, Syne } from "next/font/google";
+import { Manrope, Syne, Geist } from "next/font/google";
+import "./globals.css";
 import "./style.css";
+import { cn } from "@/lib/utils";
+
+const geist = Geist({subsets:['latin'],variable:'--font-sans'});
 
 const syne = Syne({
   variable: "--font-syne",
@@ -25,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr" className={`${syne.variable} ${manrope.variable}`}>
+    <html lang="fr" className={cn(syne.variable, manrope.variable, "font-sans", geist.variable)}>
       <body>{children}</body>
     </html>
   );

@@ -1,4 +1,5 @@
 import ContactForm from "@/components/ContactForm";
+import ImagesBadgeDemoTwo from "@/components/images-badge-demo-2";
 import { projects } from "@/data/projects";
 
 export default function HomePage() {
@@ -25,6 +26,7 @@ export default function HomePage() {
             <p className="hero-lead">
               Sites et apps Next.js simples, propres et maintenables.
             </p>
+            <ImagesBadgeDemoTwo />
             <div className="hero-actions">
               <a className="btn btn-primary" href="#projects">
                 Voir les projets

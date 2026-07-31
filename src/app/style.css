@@ -113,10 +113,15 @@ a {
 }
 
 .hero-lead {
-  margin: 0 0 1.75rem;
+  margin: 0 0 1.25rem;
   color: var(--muted);
   font-size: 1.05rem;
   max-width: 28rem;
+}
+
+.hero-badge {
+  margin: 0 0 1.75rem;
+  min-height: 3.5rem;
 }
 
 .hero-actions {

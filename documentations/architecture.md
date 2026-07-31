@@ -11,7 +11,11 @@ Site portfolio mono-page en Next.js (App Router), prêt pour Vercel.
 | `src/app/style.css` | Styles mutualisés |
 | `src/app/api/contact/route.ts` | Route Handler POST du formulaire |
 | `src/components/ContactForm.tsx` | Formulaire client (fetch + états) |
+| `src/components/images-badge-demo-2.tsx` | Demo Aceternity Images Badge (hero) |
+| `src/components/ui/images-badge.tsx` | Composant Images Badge (shadcn/Aceternity) |
 | `src/data/projects.ts` | Données projets |
+| `src/app/globals.css` | Tailwind + tokens shadcn |
+| `src/app/style.css` | Styles portfolio mutualisés |
 
 ## Flux contact
 
